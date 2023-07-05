@@ -4,7 +4,7 @@ import crc8
 import test
 method = 'com'
 port = '/dev/ttyUSB0'
-baudrate = '115200'
+baudrate = '9600'
 
 def serail_data(com:uart.Serial):
     with serial.Serial() as ser:
@@ -17,14 +17,17 @@ def read_data(data):
     t = data.hex()
     return t
 
-def parse_data():
+def parse_data(data):
     hash = crc8.crc8()
-    hash.update(b'123')
+    hash.update(data.encode())
     print(hash.hexdigest())
 
 
 if __name__ == '__main__':
-    # com = uart.Serial(port=port,baudrate=baudrate)
-    # data = serail_data()
-    # read_data(data)
-    parse_data()
+    com = uart.Serial(port=port,baudrate=baudrate)
+
+    while True:
+        data = serail_data(com)
+        t = read_data(data)
+        # print(t)
+        parse_data(t)
