@@ -11,7 +11,7 @@ def serail_data(com:uart.Serial):
         ser.port = com.port
         ser.baudrate = com.baudrate
         ser.open()
-        return ser.read()
+        return ser.read(4)
 
 def read_data(data):
     t = data.hex()
@@ -22,7 +22,7 @@ def write_date(com:uart.Serial):
         ser.baudrate = com.baudrate
         ser.open()
         crc = parse_data(b'0x00')
-        buffer = b'[0xAA,0x01,0x00,0xf6]'
+        buffer = b'[AA,02,00,00]'
         ser.write(buffer)
 
 def parse_data(data):
@@ -36,8 +36,9 @@ if __name__ == '__main__':
     data = serail_data(com)
     write_date(com)
     while True:
-
+        write_date(com)
         t = read_data(data)
         print(t)
 
-    parse_data(t)
+
+
