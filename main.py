@@ -21,21 +21,23 @@ def write_date(com:uart.Serial):
         ser.port = com.port
         ser.baudrate = com.baudrate
         ser.open()
-        ser.write(b'04')
+        crc = parse_data(b'0x00')
+        buffer = b'[0xAA,0x01,0x00,0xf6]'
+        ser.write(buffer)
 
 def parse_data(data):
     hash = crc8.crc8()
-    hash.update(data.encode())
-    print(hash.hexdigest())
+    hash.update(data)
+    return hash.hexdigest()
 
 
 if __name__ == '__main__':
     com = uart.Serial(port=port,baudrate=baudrate)
     data = serail_data(com)
+    write_date(com)
     while True:
-        write_date(com)
-        t = read_data(data)
-        if t =='aa':
-            write_date()
 
-    # parse_data(t)
+        t = read_data(data)
+        print(t)
+
+    parse_data(t)
