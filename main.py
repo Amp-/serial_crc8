@@ -28,17 +28,18 @@ def write_date(com:uart.Serial):
 def parse_data(data):
     hash = crc8.crc8()
     hash.update(data)
-    return hash.hexdigest()
+    return hash.digest()
 
 
 if __name__ == '__main__':
     com = uart.Serial(port=port,baudrate=baudrate)
     data = serail_data(com)
     write_date(com)
-    while True:
-        write_date(com)
-        t = read_data(data)
-        print(t)
+    t = read_data(data)
+    crc = parse_data(data[2:3])
+    print(crc)
+    print(data[3:4])
+    print(data)
 
 
 
