@@ -45,11 +45,11 @@ if __name__ == '__main__':
     t = read_data(data)
     crc = parse_data(data[2:3])
     crc81 = parse_data_crc(data[2:3])
-    print(crc)
-    print(crc81)
-    # print(data[3:4])
-    # print(data[-1:-1])
-    # print(data)
+    # print(crc)
+    # print(crc81)
+    # # print(data[3:4])
+    # # print(data[-1:-1])
+    print(data)
 
 
 
