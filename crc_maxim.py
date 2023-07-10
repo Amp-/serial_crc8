@@ -35,8 +35,7 @@ crcTable = [
 def DallasMaximCRC8(data:bytes):
 	crc = 0
 	for i in range(0, len(data)):
-		crc = crcTable[data[i:i+1] ** i]
-		print(crc)
+		crc = crcTable[data[i] ^ crc]
 	return crc
 	# byte crc = 0;
 	# for (var i = 0; i < len; i++)
@@ -45,5 +44,4 @@ def DallasMaximCRC8(data:bytes):
 	# in c#
 # 	b'\xaa\x86\x01\xdb'
 
-print(chr(DallasMaximCRC8(b'\x86\x04')))
-print(DallasMaximCRC8(b'\x86\x04'))
+print(hex(DallasMaximCRC8(b'\x86\x01')))
