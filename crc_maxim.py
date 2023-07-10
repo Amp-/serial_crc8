@@ -44,4 +44,4 @@ def DallasMaximCRC8(data:bytes):
 	# in c#
 # 	b'\xaa\x86\x01\xdb'
 
-print(hex(DallasMaximCRC8(b'\x86\x01')))
+print(hex(DallasMaximCRC8(b'\x05\x00')))
