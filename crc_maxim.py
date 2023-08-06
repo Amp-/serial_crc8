@@ -36,7 +36,10 @@ def DallasMaximCRC8(data:bytes):
 	crc = 0
 	for i in range(0, len(data)):
 		crc = crcTable[data[i] ^ crc]
-	return crc
+	# return crc
+	crc_total = hex(crc)[2:4]
+	return crc_total
+
 	# byte crc = 0;
 	# for (var i = 0; i < len; i++)
 	# 	crc = crc8Table[crc ^ bytes[i]];
@@ -44,4 +47,13 @@ def DallasMaximCRC8(data:bytes):
 	# in c#
 # 	b'\xaa\x86\x01\xdb'
 
-print(hex(DallasMaximCRC8(b'\x05\x00')))
+def DallasMaximCRC8_old(data:bytes):
+	crc = 0
+	for i in range(0, len(data)):
+		crc = crcTable[data[i] ^ crc]
+	return hex(crc).encode()
+
+# g = DallasMaximCRC8(bytes.fromhex('04'+'00'))
+# print(g)
+# t = DallasMaximCRC8_old(b'\x04\x00')
+# print(t.encode())
