@@ -6,7 +6,7 @@ import crc_maxim
 import test
 method = 'com'
 port = '/dev/ttyUSB0'
-port = 'COM8'
+#port = 'COM8'
 baudrate = '115200'
 start_byte = b'\xaa'
 in_list = []
